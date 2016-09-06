@@ -7,14 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230E73111D7821A2009B7C8E /* ListMediaItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 230E73101D7821A2009B7C8E /* ListMediaItemCell.m */; };
 		231D5E8D1D65509E00BC7286 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5E8C1D65509E00BC7286 /* main.m */; };
 		231D5E901D65509E00BC7286 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5E8F1D65509E00BC7286 /* AppDelegate.m */; };
 		231D5E931D65509E00BC7286 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5E921D65509E00BC7286 /* ViewController.m */; };
-		231D5E961D65509E00BC7286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D5E941D65509E00BC7286 /* Main.storyboard */; };
 		231D5E981D65509E00BC7286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231D5E971D65509E00BC7286 /* Assets.xcassets */; };
 		231D5E9B1D65509E00BC7286 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */; };
 		231D5EA61D65509F00BC7286 /* TableviewCellCalculateHeightDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EA51D65509F00BC7286 /* TableviewCellCalculateHeightDemoTests.m */; };
 		231D5EB11D65509F00BC7286 /* TableviewCellCalculateHeightDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EB01D65509F00BC7286 /* TableviewCellCalculateHeightDemoUITests.m */; };
+		231D5EC41D65523300BC7286 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EC31D65523300BC7286 /* ListCell.m */; };
+		231D5EC71D65525300BC7286 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EC61D65525300BC7286 /* CommentCell.m */; };
+		231D5ECA1D65526700BC7286 /* ListCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EC91D65526700BC7286 /* ListCellModel.m */; };
+		231D5ECD1D65527300BC7286 /* CommentCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ECC1D65527300BC7286 /* CommentCellModel.m */; };
+		231D5ED21D655B4700BC7286 /* UITTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ED11D655B4700BC7286 /* UITTTAttributedLabel.m */; };
+		231D5ED51D6560FC00BC7286 /* UIView+FrameCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ED41D6560FC00BC7286 /* UIView+FrameCategory.m */; };
+		231D5ED81D65623300BC7286 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ED71D65623300BC7286 /* UIColor+Additions.m */; };
+		231D5EE11D6587C100BC7286 /* UICustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EE01D6587C100BC7286 /* UICustomCollectionView.m */; };
+		23297F311D7EAC15001CF938 /* ListDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23297F301D7EAC15001CF938 /* ListDataPlist.plist */; };
+		23F937C21D6C30EE00CAFA99 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F937C11D6C30EE00CAFA99 /* NSString+Common.m */; };
+		23F937C51D6C82DD00CAFA99 /* UILabel+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F937C41D6C82DD00CAFA99 /* UILabel+Common.m */; };
+		C1C90BBD9366106603610093 /* libPods-TableviewCellCalculateHeightDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE536EF74AB845DC17C8D38 /* libPods-TableviewCellCalculateHeightDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		230E730F1D7821A2009B7C8E /* ListMediaItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListMediaItemCell.h; sourceTree = "<group>"; };
+		230E73101D7821A2009B7C8E /* ListMediaItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListMediaItemCell.m; sourceTree = "<group>"; };
 		231D5E881D65509E00BC7286 /* TableviewCellCalculateHeightDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableviewCellCalculateHeightDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		231D5E8C1D65509E00BC7286 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		231D5E8E1D65509E00BC7286 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		231D5E8F1D65509E00BC7286 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		231D5E911D65509E00BC7286 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		231D5E921D65509E00BC7286 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		231D5E951D65509E00BC7286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		231D5E971D65509E00BC7286 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231D5E9A1D65509E00BC7286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		231D5E9C1D65509E00BC7286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +64,31 @@
 		231D5EAC1D65509F00BC7286 /* TableviewCellCalculateHeightDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableviewCellCalculateHeightDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		231D5EB01D65509F00BC7286 /* TableviewCellCalculateHeightDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableviewCellCalculateHeightDemoUITests.m; sourceTree = "<group>"; };
 		231D5EB21D65509F00BC7286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		231D5EC21D65523300BC7286 /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
+		231D5EC31D65523300BC7286 /* ListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCell.m; sourceTree = "<group>"; };
+		231D5EC51D65525300BC7286 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		231D5EC61D65525300BC7286 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		231D5EC81D65526700BC7286 /* ListCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCellModel.h; sourceTree = "<group>"; };
+		231D5EC91D65526700BC7286 /* ListCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCellModel.m; sourceTree = "<group>"; };
+		231D5ECB1D65527300BC7286 /* CommentCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCellModel.h; sourceTree = "<group>"; };
+		231D5ECC1D65527300BC7286 /* CommentCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCellModel.m; sourceTree = "<group>"; };
+		231D5ECE1D65528F00BC7286 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		231D5ED01D655B4700BC7286 /* UITTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITTTAttributedLabel.h; sourceTree = "<group>"; };
+		231D5ED11D655B4700BC7286 /* UITTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITTTAttributedLabel.m; sourceTree = "<group>"; };
+		231D5ED31D6560FC00BC7286 /* UIView+FrameCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameCategory.h"; sourceTree = "<group>"; };
+		231D5ED41D6560FC00BC7286 /* UIView+FrameCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameCategory.m"; sourceTree = "<group>"; };
+		231D5ED61D65623300BC7286 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		231D5ED71D65623300BC7286 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
+		231D5EDF1D6587C100BC7286 /* UICustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomCollectionView.h; sourceTree = "<group>"; };
+		231D5EE01D6587C100BC7286 /* UICustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomCollectionView.m; sourceTree = "<group>"; };
+		23297F301D7EAC15001CF938 /* ListDataPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ListDataPlist.plist; sourceTree = "<group>"; };
+		23F937C01D6C30EE00CAFA99 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
+		23F937C11D6C30EE00CAFA99 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
+		23F937C31D6C82DD00CAFA99 /* UILabel+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Common.h"; sourceTree = "<group>"; };
+		23F937C41D6C82DD00CAFA99 /* UILabel+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Common.m"; sourceTree = "<group>"; };
+		ABDDBB74D3D02846C7D2F65A /* Pods-TableviewCellCalculateHeightDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableviewCellCalculateHeightDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-TableviewCellCalculateHeightDemo/Pods-TableviewCellCalculateHeightDemo.release.xcconfig"; sourceTree = "<group>"; };
+		ADE536EF74AB845DC17C8D38 /* libPods-TableviewCellCalculateHeightDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TableviewCellCalculateHeightDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10E9A8339F2E46E4EAFE867 /* Pods-TableviewCellCalculateHeightDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableviewCellCalculateHeightDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TableviewCellCalculateHeightDemo/Pods-TableviewCellCalculateHeightDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C90BBD9366106603610093 /* libPods-TableviewCellCalculateHeightDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +124,8 @@
 				231D5EA41D65509F00BC7286 /* TableviewCellCalculateHeightDemoTests */,
 				231D5EAF1D65509F00BC7286 /* TableviewCellCalculateHeightDemoUITests */,
 				231D5E891D65509E00BC7286 /* Products */,
+				F516BD81D5BEAB2E702CE145 /* Pods */,
+				94ABF6BE03E2D3259684C799 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +142,11 @@
 		231D5E8A1D65509E00BC7286 /* TableviewCellCalculateHeightDemo */ = {
 			isa = PBXGroup;
 			children = (
-				231D5E8E1D65509E00BC7286 /* AppDelegate.h */,
-				231D5E8F1D65509E00BC7286 /* AppDelegate.m */,
-				231D5E911D65509E00BC7286 /* ViewController.h */,
-				231D5E921D65509E00BC7286 /* ViewController.m */,
-				231D5E941D65509E00BC7286 /* Main.storyboard */,
-				231D5E971D65509E00BC7286 /* Assets.xcassets */,
-				231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */,
-				231D5E9C1D65509E00BC7286 /* Info.plist */,
+				231D5ECF1D655AFC00BC7286 /* common */,
+				231D5EC11D6551E500BC7286 /* otherFile */,
+				231D5EC01D6551DE00BC7286 /* model */,
+				231D5EBF1D6551D900BC7286 /* view */,
+				231D5EBE1D6551CF00BC7286 /* controller */,
 				231D5E8B1D65509E00BC7286 /* Supporting Files */,
 			);
 			path = TableviewCellCalculateHeightDemo;
@@ -140,6 +178,89 @@
 			path = TableviewCellCalculateHeightDemoUITests;
 			sourceTree = "<group>";
 		};
+		231D5EBE1D6551CF00BC7286 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				231D5E911D65509E00BC7286 /* ViewController.h */,
+				231D5E921D65509E00BC7286 /* ViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		231D5EBF1D6551D900BC7286 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				231D5EC21D65523300BC7286 /* ListCell.h */,
+				231D5EC31D65523300BC7286 /* ListCell.m */,
+				231D5EC51D65525300BC7286 /* CommentCell.h */,
+				231D5EC61D65525300BC7286 /* CommentCell.m */,
+				230E730F1D7821A2009B7C8E /* ListMediaItemCell.h */,
+				230E73101D7821A2009B7C8E /* ListMediaItemCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		231D5EC01D6551DE00BC7286 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				231D5EC81D65526700BC7286 /* ListCellModel.h */,
+				231D5EC91D65526700BC7286 /* ListCellModel.m */,
+				231D5ECB1D65527300BC7286 /* CommentCellModel.h */,
+				231D5ECC1D65527300BC7286 /* CommentCellModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		231D5EC11D6551E500BC7286 /* otherFile */ = {
+			isa = PBXGroup;
+			children = (
+				231D5E971D65509E00BC7286 /* Assets.xcassets */,
+				231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */,
+				231D5E9C1D65509E00BC7286 /* Info.plist */,
+				231D5E8E1D65509E00BC7286 /* AppDelegate.h */,
+				231D5E8F1D65509E00BC7286 /* AppDelegate.m */,
+				23297F301D7EAC15001CF938 /* ListDataPlist.plist */,
+			);
+			name = otherFile;
+			sourceTree = "<group>";
+		};
+		231D5ECF1D655AFC00BC7286 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				231D5ECE1D65528F00BC7286 /* common.h */,
+				231D5ED01D655B4700BC7286 /* UITTTAttributedLabel.h */,
+				231D5ED11D655B4700BC7286 /* UITTTAttributedLabel.m */,
+				231D5ED31D6560FC00BC7286 /* UIView+FrameCategory.h */,
+				231D5ED41D6560FC00BC7286 /* UIView+FrameCategory.m */,
+				231D5ED61D65623300BC7286 /* UIColor+Additions.h */,
+				231D5ED71D65623300BC7286 /* UIColor+Additions.m */,
+				231D5EDF1D6587C100BC7286 /* UICustomCollectionView.h */,
+				231D5EE01D6587C100BC7286 /* UICustomCollectionView.m */,
+				23F937C01D6C30EE00CAFA99 /* NSString+Common.h */,
+				23F937C11D6C30EE00CAFA99 /* NSString+Common.m */,
+				23F937C31D6C82DD00CAFA99 /* UILabel+Common.h */,
+				23F937C41D6C82DD00CAFA99 /* UILabel+Common.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		94ABF6BE03E2D3259684C799 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADE536EF74AB845DC17C8D38 /* libPods-TableviewCellCalculateHeightDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F516BD81D5BEAB2E702CE145 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C10E9A8339F2E46E4EAFE867 /* Pods-TableviewCellCalculateHeightDemo.debug.xcconfig */,
+				ABDDBB74D3D02846C7D2F65A /* Pods-TableviewCellCalculateHeightDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +268,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 231D5EB51D65509F00BC7286 /* Build configuration list for PBXNativeTarget "TableviewCellCalculateHeightDemo" */;
 			buildPhases = (
+				4A93FE191F8DC15B733B5F80 /* 📦 Check Pods Manifest.lock */,
 				231D5E841D65509E00BC7286 /* Sources */,
 				231D5E851D65509E00BC7286 /* Frameworks */,
 				231D5E861D65509E00BC7286 /* Resources */,
+				3F3F5FB176611646203CA673 /* 📦 Embed Pods Frameworks */,
+				0713F4C6EA0E5ACAE14997C1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,7 +369,7 @@
 			files = (
 				231D5E9B1D65509E00BC7286 /* LaunchScreen.storyboard in Resources */,
 				231D5E981D65509E00BC7286 /* Assets.xcassets in Resources */,
-				231D5E961D65509E00BC7286 /* Main.storyboard in Resources */,
+				23297F311D7EAC15001CF938 /* ListDataPlist.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,13 +389,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0713F4C6EA0E5ACAE14997C1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TableviewCellCalculateHeightDemo/Pods-TableviewCellCalculateHeightDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F3F5FB176611646203CA673 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TableviewCellCalculateHeightDemo/Pods-TableviewCellCalculateHeightDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A93FE191F8DC15B733B5F80 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		231D5E841D65509E00BC7286 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231D5ECD1D65527300BC7286 /* CommentCellModel.m in Sources */,
+				23F937C51D6C82DD00CAFA99 /* UILabel+Common.m in Sources */,
 				231D5E931D65509E00BC7286 /* ViewController.m in Sources */,
+				231D5EC41D65523300BC7286 /* ListCell.m in Sources */,
+				231D5ED21D655B4700BC7286 /* UITTTAttributedLabel.m in Sources */,
+				23F937C21D6C30EE00CAFA99 /* NSString+Common.m in Sources */,
+				231D5ED51D6560FC00BC7286 /* UIView+FrameCategory.m in Sources */,
+				231D5ED81D65623300BC7286 /* UIColor+Additions.m in Sources */,
+				231D5EE11D6587C100BC7286 /* UICustomCollectionView.m in Sources */,
+				230E73111D7821A2009B7C8E /* ListMediaItemCell.m in Sources */,
 				231D5E901D65509E00BC7286 /* AppDelegate.m in Sources */,
+				231D5ECA1D65526700BC7286 /* ListCellModel.m in Sources */,
+				231D5EC71D65525300BC7286 /* CommentCell.m in Sources */,
 				231D5E8D1D65509E00BC7286 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,14 +491,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		231D5E941D65509E00BC7286 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				231D5E951D65509E00BC7286 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -413,23 +588,29 @@
 		};
 		231D5EB61D65509F00BC7286 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C10E9A8339F2E46E4EAFE867 /* Pods-TableviewCellCalculateHeightDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TableviewCellCalculateHeightDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junanxin.TableviewCellCalculateHeightDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		231D5EB71D65509F00BC7286 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABDDBB74D3D02846C7D2F65A /* Pods-TableviewCellCalculateHeightDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TableviewCellCalculateHeightDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junanxin.TableviewCellCalculateHeightDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -498,6 +679,7 @@
 				231D5EB71D65509F00BC7286 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		231D5EB81D65509F00BC7286 /* Build configuration list for PBXNativeTarget "TableviewCellCalculateHeightDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +688,7 @@
 				231D5EBA1D65509F00BC7286 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		231D5EBB1D65509F00BC7286 /* Build configuration list for PBXNativeTarget "TableviewCellCalculateHeightDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +697,7 @@
 				231D5EBD1D65509F00BC7286 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,21 +7,91 @@
 //
 
 #import "ViewController.h"
+#import "common.h"
+#import "ListCell.h"
+#import "ListCellModel.h"
+#import "CommentCellModel.h"
 
-@interface ViewController ()
+#define ListCellIdentifier @"listCell"
 
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *listDataArr;
+
+@property (nonatomic, strong) NSMutableDictionary *listDataDic;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self loadSubViews];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSMutableArray *)listDataArr
+{
+    if (_listDataArr == nil) {
+        _listDataArr = [[NSMutableArray alloc] init];
+        NSArray *dataArr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ListDataPlist.plist" ofType:nil]];
+        NSMutableArray *mutableArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in dataArr) {
+            ListCellModel *model = [[ListCellModel alloc] init];
+            model = [model makeListCellModelWithDic:dic];
+            [mutableArr addObject:model];
+        }
+        _listDataArr = [NSMutableArray arrayWithArray:mutableArr];
+    }
+    return _listDataArr;
 }
 
+-(NSMutableDictionary *)listDataDic
+{
+    if (_listDataDic == nil)
+    {
+        
+    }
+    return _listDataDic;
+}
+#pragma mark - 加载视图
+-(void)loadSubViews
+{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, kDeviceHeight)];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [_tableView registerClass:[ListCell class] forCellReuseIdentifier:ListCellIdentifier];
+//    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [self.view addSubview:_tableView];
+}
+#pragma mark - UITableView 代理、数据源方法
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.listDataArr.count;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ListCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCellIdentifier];
+    if (cell == nil) {
+        cell = [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifier];
+    }
+    [cell setListCellModel:_listDataArr[indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ListCellModel *cellModel = _listDataArr[indexPath.row];
+    return [ListCell cellHeightWithObj:cellModel];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    ListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    NSLog(@"%zi",indexPath.row);
+}
 @end
