@@ -29,14 +29,14 @@
         _mediaImg.contentMode = UIViewContentModeScaleAspectFill;
         _mediaImg.clipsToBounds = YES;
         [self.contentView addSubview:_mediaImg];
-        
     }
 }
 
 -(void)setMediaImgStr:(NSString *)mediaImgStr
 {
     if (mediaImgStr) {
-        _mediaImg.image = [UIImage imageNamed:mediaImgStr];
+//        _mediaImg.image = [UIImage imageNamed:mediaImgStr];
+        [_mediaImg sd_setImageWithURL:[NSURL URLWithString:mediaImgStr]];
     }
 }
 

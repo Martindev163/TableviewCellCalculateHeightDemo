@@ -1,6 +1,7 @@
 #import "UIColor+Additions.h"
 #import "UILabel+Common.h"
 #import "NSString+Common.h"
+#import "UIView+FrameCategory.h"
 
 #define kDeviceWidth [[UIScreen mainScreen] bounds].size.width
 #define kDeviceHeight [[UIScreen mainScreen] bounds].size.height

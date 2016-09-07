@@ -8,6 +8,7 @@
 
 #import "ListCellModel.h"
 #import "CommentCellModel.h"
+#import "UserModel.h"
 
 @implementation ListCellModel
 
@@ -29,6 +30,15 @@
         [modelCommentArr addObject:model];
     }
     self.comment_list = [NSArray arrayWithArray:modelCommentArr];
+    
+    NSArray *likeUsersArr = dic[@"likeUsers"];
+    NSMutableArray *likeModelUsers = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in likeUsersArr) {
+        UserModel *userModel = [[UserModel alloc] init];
+        userModel = [userModel configUserModelWithDictionary:dic];
+        [likeModelUsers addObject:userModel];
+    }
+    self.like_users = [NSArray arrayWithArray:likeModelUsers];
     return self;
 }
 

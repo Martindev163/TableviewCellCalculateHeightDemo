@@ -20,7 +20,6 @@
 
 @property (strong, nonatomic) NSMutableArray *listDataArr;
 
-@property (nonatomic, strong) NSMutableDictionary *listDataDic;
 @end
 
 @implementation ViewController
@@ -30,6 +29,7 @@
     [self loadSubViews];
 }
 
+#pragma mark - 获取数据
 -(NSMutableArray *)listDataArr
 {
     if (_listDataArr == nil) {
@@ -46,14 +46,6 @@
     return _listDataArr;
 }
 
--(NSMutableDictionary *)listDataDic
-{
-    if (_listDataDic == nil)
-    {
-        
-    }
-    return _listDataDic;
-}
 #pragma mark - 加载视图
 -(void)loadSubViews
 {

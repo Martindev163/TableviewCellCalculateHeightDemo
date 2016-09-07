@@ -8,8 +8,8 @@
 
 #define headIconSize 60
 #define ContentFont 16
-#define LikeBtnWidth 50
-#define LikeBtnHeight 27
+#define LikeBtnWidth 35
+#define LikeBtnHeight LikeBtnWidth
 #define CommentBtnWidth 50
 #define CommentBtnHeight 27
 #define ContentWidth (kDeviceWidth - ListCellLeftMargin*2)
@@ -21,17 +21,19 @@
 #import "ListCell.h"
 #import "common.h"
 #import "UITTTAttributedLabel.h"
-#import "UIView+FrameCategory.h"
 #import "UICustomCollectionView.h"
 #import "NSString+Common.h"
 #import "UILabel+Common.h"
 #import "ListMediaItemCell.h"
 #import "CommentCell.h"
 #import "CommentCellModel.h"
+#import "LikeUsersCollectionCell.h"
+#import "UserModel.h"
 
 @interface ListCell()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,TTTAttributedLabelDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)UILabel *nameLab,*likeLab,*commentLab,*timeLab;//昵称、喜欢、评论、时间
+@property (strong, nonatomic)UIImageView *likeAndCommentSeparateLine;//点赞评论分割线
 @property (strong, nonatomic)UITTTAttributedLabel *contentLab;//内容
 @property (strong, nonatomic)UIButton *headBtn,*likeBtn,*commentBtn;//头像、喜欢、评论
 @property (strong, nonatomic)UITableView *commentTabV;//评论tabl
@@ -39,6 +41,7 @@
 
 @property (strong, nonatomic)ListCellModel *listCellModel;//model
 @property (strong, nonatomic)UITableView *commentTableView;//评论列表
+@property (strong, nonatomic)UICollectionView *likeUsersView;//点赞人
 
 @end
 
@@ -70,14 +73,6 @@
             _contentLab.textColor = [UIColor colorWithHex:@"#222222"];
             [self.contentView addSubview:_contentLab];
         }
-//        if (!self.likeBtn) {
-//            self.likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(ListCellLeftMargin, 0, LikeBtnWidth, LikeBtnHeight)];
-//            [self.contentView addSubview:self.likeBtn];
-//        }
-//        if (!self.commentBtn) {
-//            self.commentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kDeviceWidth - ListCellLeftMargin - CommentBtnWidth, 0, CommentBtnWidth, CommentBtnHeight)];
-//            [self.contentView addSubview:self.commentBtn];
-//        }
         //图片
         if (!self.mediaView) {
             UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -90,7 +85,41 @@
             [self.mediaView registerClass:[ListMediaItemCell class] forCellWithReuseIdentifier:ListMediaItemCellIdentifier];
             [self.contentView addSubview:self.mediaView];
         }
+        //点赞、评论按钮
+        if (!_likeBtn) {
+            _likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(ListCellLeftMargin, 0, LikeBtnWidth, LikeBtnHeight)];
+            [_likeBtn setImage:[UIImage imageNamed:@"tweet_btn_like"] forState:UIControlStateNormal];
+            [_likeBtn setImage:[UIImage imageNamed:@"tweet_btn_liked"] forState:UIControlStateSelected];
+            [_likeBtn addTarget:self action:@selector(LikeBtnClikAction) forControlEvents:UIControlEventTouchUpInside];
+            [self.contentView addSubview:_likeBtn];
+        }
+        if (!_commentBtn) {
+            _commentBtn = [[UIButton alloc] initWithFrame:CGRectMake(kDeviceWidth- ListCellLeftMargin - LikeBtnWidth, 0, LikeBtnWidth, LikeBtnHeight)];
+            [_commentBtn setImage:[UIImage imageNamed:@"tweet_btn_comment"] forState:UIControlStateNormal];
+            [self.contentView addSubview:_commentBtn];
+        }
         
+        //点赞人collectionView
+        if (!self.likeUsersView) {
+            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+            self.likeUsersView = [[UICollectionView alloc] initWithFrame:CGRectMake(ListCellLeftMargin, 0, ContentWidth, 35) collectionViewLayout:layout];
+            self.likeUsersView.scrollEnabled = NO;
+            [self.likeUsersView setBackgroundView:nil];
+            [self.likeUsersView setBackgroundColor:[UIColor colorWithHex:@"#eeeeee"]];
+            [self.likeUsersView registerClass:[LikeUsersCollectionCell class] forCellWithReuseIdentifier:LikeUserCellIdentifier];
+            self.likeUsersView.delegate = self;
+            self.likeUsersView.dataSource = self;
+            [self.contentView addSubview:self.likeUsersView];
+        }
+        
+        //点赞评论分割线
+        if (!self.likeAndCommentSeparateLine) {
+            self.likeAndCommentSeparateLine = [[UIImageView alloc] initWithFrame:CGRectMake(ListCellLeftMargin, 0, ContentWidth, 1)];
+            self.likeAndCommentSeparateLine.backgroundColor = [UIColor colorWithHex:@"#dddddd"];
+            [self.contentView addSubview:self.likeAndCommentSeparateLine];
+        }
+        
+        //评论Tableview
         if (!self.commentTableView) {
             _commentTableView = [[UITableView alloc] initWithFrame:CGRectMake(ListCellLeftMargin, 0, kCommentCell_CotentWidth, 20)];
             _commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -129,6 +158,33 @@
     [self.mediaView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, mediaWidth, mediaHeight)];
     curBottomY = self.mediaView.bottom;
     
+    //设置点赞和评论按钮
+    _likeBtn.top = curBottomY;
+    _commentBtn.top = curBottomY;
+    
+    curBottomY += LikeBtnHeight+15;
+    
+    //设置点赞
+    if (listCellModel.like_users.count > 0)
+    {
+        _likeUsersView.frame = CGRectMake(ListCellLeftMargin, curBottomY, ContentWidth, 35);
+    }
+    else
+    {
+        _likeUsersView.frame = CGRectMake(ListCellLeftMargin, curBottomY, ContentWidth, 0);
+    }
+    curBottomY = self.likeUsersView.bottom ;
+    //点赞评论分割线
+    if (listCellModel.like_users.count > 0)
+    {
+        _likeAndCommentSeparateLine.frame = CGRectMake(ListCellLeftMargin, curBottomY, ContentWidth, 1);
+    }
+    else
+    {
+        _likeAndCommentSeparateLine.frame = CGRectMake(ListCellLeftMargin, curBottomY, ContentWidth, 0);
+    }
+    curBottomY = _likeAndCommentSeparateLine.bottom;
+    
     [self.commentTableView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, kCommentCell_CotentWidth, [ListCell contentCommentListHeightWihtListCellModel:listCellModel]-15)];
 //    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, curBottomY-16, kDeviceWidth, 1)];
 //    lineView.backgroundColor = [UIColor colorWithHex:@"#eeeeee"];
@@ -149,6 +205,8 @@
     cellHeight += [self contentLabelHeightWithListCellModel:listModel];
     cellHeight += [self contentMediaHeightWithListCellModel:listModel];
     cellHeight += [self contentCommentListHeightWihtListCellModel:listModel];
+    cellHeight += [self contentLikeUserCellHeightwithListCellModel:listModel];
+    cellHeight += [self contentLikeAndCommnentBtnHeight];
     cellHeight += 15;
     return cellHeight;
 }
@@ -174,6 +232,18 @@
     contentMediaHeigth += 15;
     return contentMediaHeigth;
 }
+//点赞列表高度
++(CGFloat)contentLikeUserCellHeightwithListCellModel:(ListCellModel *)listCellModel
+{
+    CGFloat contentLikeHeight = 0;
+    if (listCellModel.like_users.count > 0) {
+        contentLikeHeight = 35;
+    }else
+    {
+        contentLikeHeight = 0;
+    }
+    return contentLikeHeight;
+}
 //评论列表的高度
 +(CGFloat)contentCommentListHeightWihtListCellModel:(ListCellModel *)listCellModel
 {
@@ -189,6 +259,11 @@
     contentCommentHeight += 15;
     return contentCommentHeight;
 }
+//点赞、评论高度
++(CGFloat)contentLikeAndCommnentBtnHeight
+{
+    return LikeBtnHeight + 15;
+}
 #pragma mark - UICollectionView 代理、数据源方法
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -197,19 +272,43 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _listCellModel.pictures.count;
+    if (collectionView == _mediaView) {
+        return _listCellModel.pictures.count;
+    }
+    else
+    {
+        return _listCellModel.like_users.count;
+    }
+    
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ListMediaItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ListMediaItemCellIdentifier forIndexPath:indexPath];
-    cell.mediaImgStr = _listCellModel.pictures[indexPath.item];
-    return cell;
+    if (collectionView == _mediaView) {
+        ListMediaItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ListMediaItemCellIdentifier forIndexPath:indexPath];
+        cell.mediaImgStr = _listCellModel.pictures[indexPath.item];
+        return cell;
+    }
+    else
+    {
+        LikeUsersCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LikeUserCellIdentifier forIndexPath:indexPath];
+        UserModel *usermodel = _listCellModel.like_users[indexPath.item];
+        [cell configWithUserModel:usermodel];
+        return cell;
+    }
+    
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ListMediaItemWidth, ListMediaItemWidth);
+    if (collectionView == _mediaView) {
+        return CGSizeMake(ListMediaItemWidth, ListMediaItemWidth);
+    }
+    else
+    {
+        return CGSizeMake(35, 35);
+    }
+    
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -229,7 +328,14 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%zi",indexPath.item);
+    if (collectionView == _mediaView) {
+        NSLog(@" mediaView  %zi",indexPath.item);
+    }
+    else
+    {
+        NSLog(@" likeView %zi",indexPath.item);
+    }
+    
 }
 
 #define mark - UITableView(CommentCell) 代理、数据源方法
@@ -262,6 +368,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+#pragma mark - 点击点赞按钮
+-(void)LikeBtnClikAction
+{
+    if (_likeBtn.selected==NO) {
+        _likeBtn.selected = YES;
+        NSLog(@"点赞");
+    }
+    else
+    {
+        _likeBtn.selected = NO;
+        NSLog(@"取消点赞");
+    }
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

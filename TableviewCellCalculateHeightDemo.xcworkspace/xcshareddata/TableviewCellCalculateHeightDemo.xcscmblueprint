@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "BA010448368E6286556E09F9885E03FDD54E9577",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BA010448368E6286556E09F9885E03FDD54E9577" : 0,
+    "AF47D4A3F34FEF4628F2EF7AEC8326E949F17015" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "799B1C83-1CEE-418E-81CD-13A4AD9FC18B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BA010448368E6286556E09F9885E03FDD54E9577" : "TableviewCellCalculateHeightDemo\/",
+    "AF47D4A3F34FEF4628F2EF7AEC8326E949F17015" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TableviewCellCalculateHeightDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TableviewCellCalculateHeightDemo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/haozheMa\/3DTouch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AF47D4A3F34FEF4628F2EF7AEC8326E949F17015"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/haozheMa\/TableviewCellCalculateHeightDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BA010448368E6286556E09F9885E03FDD54E9577"
+    }
+  ]
+}
