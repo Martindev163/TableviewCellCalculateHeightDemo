@@ -157,6 +157,7 @@
     CGFloat mediaWidth = ContentWidth;
     [self.mediaView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, mediaWidth, mediaHeight)];
     curBottomY = self.mediaView.bottom;
+    [_mediaView reloadData];
     
     //设置点赞和评论按钮
     _likeBtn.top = curBottomY;
@@ -173,6 +174,7 @@
     {
         _likeUsersView.frame = CGRectMake(ListCellLeftMargin, curBottomY, ContentWidth, 0);
     }
+    [_likeUsersView reloadData];
     curBottomY = self.likeUsersView.bottom ;
     //点赞评论分割线
     if (listCellModel.like_users.count > 0)
@@ -186,6 +188,7 @@
     curBottomY = _likeAndCommentSeparateLine.bottom;
     
     [self.commentTableView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, kCommentCell_CotentWidth, [ListCell contentCommentListHeightWihtListCellModel:listCellModel]-15)];
+    [_commentTableView reloadData];
 //    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, curBottomY-16, kDeviceWidth, 1)];
 //    lineView.backgroundColor = [UIColor colorWithHex:@"#eeeeee"];
 //    [self.contentView addSubview:lineView];
@@ -273,11 +276,11 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == _mediaView) {
-        return _listCellModel.pictures.count;
+        return self.listCellModel.pictures.count;
     }
     else
     {
-        return _listCellModel.like_users.count;
+        return self.listCellModel.like_users.count;
     }
     
 }
@@ -286,13 +289,13 @@
 {
     if (collectionView == _mediaView) {
         ListMediaItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ListMediaItemCellIdentifier forIndexPath:indexPath];
-        cell.mediaImgStr = _listCellModel.pictures[indexPath.item];
+        cell.mediaImgStr = self.listCellModel.pictures[indexPath.item];
         return cell;
     }
     else
     {
         LikeUsersCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LikeUserCellIdentifier forIndexPath:indexPath];
-        UserModel *usermodel = _listCellModel.like_users[indexPath.item];
+        UserModel *usermodel = self.listCellModel.like_users[indexPath.item];
         [cell configWithUserModel:usermodel];
         return cell;
     }

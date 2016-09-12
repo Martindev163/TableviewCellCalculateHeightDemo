@@ -67,6 +67,7 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     ListCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCellIdentifier];
     if (cell == nil) {
         cell = [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifier];
