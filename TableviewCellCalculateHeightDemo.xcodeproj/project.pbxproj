@@ -23,6 +23,7 @@
 		231D5ED51D6560FC00BC7286 /* UIView+FrameCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ED41D6560FC00BC7286 /* UIView+FrameCategory.m */; };
 		231D5ED81D65623300BC7286 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5ED71D65623300BC7286 /* UIColor+Additions.m */; };
 		231D5EE11D6587C100BC7286 /* UICustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231D5EE01D6587C100BC7286 /* UICustomCollectionView.m */; };
+		2321C5E51D8E2D0700596222 /* PhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2321C5E41D8E2D0700596222 /* PhotoBrowserView.m */; };
 		23297F311D7EAC15001CF938 /* ListDataPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23297F301D7EAC15001CF938 /* ListDataPlist.plist */; };
 		23297F341D7EC96B001CF938 /* OneAPM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23297F331D7EC96B001CF938 /* OneAPM.framework */; };
 		23297F361D7EC9BF001CF938 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23297F351D7EC9BF001CF938 /* SystemConfiguration.framework */; };
@@ -32,6 +33,7 @@
 		23297F3E1D7EC9EB001CF938 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 23297F3D1D7EC9EB001CF938 /* libstdc++.tbd */; };
 		23297F421D7EEB89001CF938 /* LikeUsersCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23297F411D7EEB89001CF938 /* LikeUsersCollectionCell.m */; };
 		23297F451D7EEE7C001CF938 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23297F441D7EEE7C001CF938 /* UserModel.m */; };
+		234100731D86915400DFA059 /* PhotoBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 234100721D86915400DFA059 /* PhotoBrowserVC.m */; };
 		23F937C21D6C30EE00CAFA99 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F937C11D6C30EE00CAFA99 /* NSString+Common.m */; };
 		23F937C51D6C82DD00CAFA99 /* UILabel+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F937C41D6C82DD00CAFA99 /* UILabel+Common.m */; };
 		C1C90BBD9366106603610093 /* libPods-TableviewCellCalculateHeightDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE536EF74AB845DC17C8D38 /* libPods-TableviewCellCalculateHeightDemo.a */; };
@@ -89,6 +91,8 @@
 		231D5ED71D65623300BC7286 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		231D5EDF1D6587C100BC7286 /* UICustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomCollectionView.h; sourceTree = "<group>"; };
 		231D5EE01D6587C100BC7286 /* UICustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomCollectionView.m; sourceTree = "<group>"; };
+		2321C5E31D8E2D0700596222 /* PhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserView.h; sourceTree = "<group>"; };
+		2321C5E41D8E2D0700596222 /* PhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserView.m; sourceTree = "<group>"; };
 		23297F301D7EAC15001CF938 /* ListDataPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ListDataPlist.plist; sourceTree = "<group>"; };
 		23297F331D7EC96B001CF938 /* OneAPM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OneAPM.framework; sourceTree = "<group>"; };
 		23297F351D7EC9BF001CF938 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -101,6 +105,9 @@
 		23297F411D7EEB89001CF938 /* LikeUsersCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeUsersCollectionCell.m; sourceTree = "<group>"; };
 		23297F431D7EEE7C001CF938 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		23297F441D7EEE7C001CF938 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		234100711D86915400DFA059 /* PhotoBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserVC.h; sourceTree = "<group>"; };
+		234100721D86915400DFA059 /* PhotoBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserVC.m; sourceTree = "<group>"; };
+		234828951DAE0D180016B481 /* PhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserConfig.h; sourceTree = "<group>"; };
 		23F937C01D6C30EE00CAFA99 /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		23F937C11D6C30EE00CAFA99 /* NSString+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Common.m"; sourceTree = "<group>"; };
 		23F937C31D6C82DD00CAFA99 /* UILabel+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Common.h"; sourceTree = "<group>"; };
@@ -216,6 +223,7 @@
 		231D5EBF1D6551D900BC7286 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				234100701D8690E200DFA059 /* PhotoBrowser */,
 				231D5EC21D65523300BC7286 /* ListCell.h */,
 				231D5EC31D65523300BC7286 /* ListCell.m */,
 				231D5EC51D65525300BC7286 /* CommentCell.h */,
@@ -281,6 +289,18 @@
 				23297F331D7EC96B001CF938 /* OneAPM.framework */,
 			);
 			name = ThrSDK;
+			sourceTree = "<group>";
+		};
+		234100701D8690E200DFA059 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				234100711D86915400DFA059 /* PhotoBrowserVC.h */,
+				234100721D86915400DFA059 /* PhotoBrowserVC.m */,
+				2321C5E31D8E2D0700596222 /* PhotoBrowserView.h */,
+				2321C5E41D8E2D0700596222 /* PhotoBrowserView.m */,
+				234828951DAE0D180016B481 /* PhotoBrowserConfig.h */,
+			);
+			name = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		94ABF6BE03E2D3259684C799 /* Frameworks */ = {
@@ -491,6 +511,7 @@
 				23F937C51D6C82DD00CAFA99 /* UILabel+Common.m in Sources */,
 				231D5E931D65509E00BC7286 /* ViewController.m in Sources */,
 				231D5EC41D65523300BC7286 /* ListCell.m in Sources */,
+				2321C5E51D8E2D0700596222 /* PhotoBrowserView.m in Sources */,
 				231D5ED21D655B4700BC7286 /* UITTTAttributedLabel.m in Sources */,
 				23F937C21D6C30EE00CAFA99 /* NSString+Common.m in Sources */,
 				23297F451D7EEE7C001CF938 /* UserModel.m in Sources */,
@@ -500,6 +521,7 @@
 				231D5EE11D6587C100BC7286 /* UICustomCollectionView.m in Sources */,
 				230E73111D7821A2009B7C8E /* ListMediaItemCell.m in Sources */,
 				231D5E901D65509E00BC7286 /* AppDelegate.m in Sources */,
+				234100731D86915400DFA059 /* PhotoBrowserVC.m in Sources */,
 				231D5ECA1D65526700BC7286 /* ListCellModel.m in Sources */,
 				231D5EC71D65525300BC7286 /* CommentCell.m in Sources */,
 				231D5E8D1D65509E00BC7286 /* main.m in Sources */,

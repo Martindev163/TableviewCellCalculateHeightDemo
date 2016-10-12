@@ -11,21 +11,24 @@
 #import "ListCell.h"
 #import "ListCellModel.h"
 #import "CommentCellModel.h"
+#import "PhotoBrowserVC.h"
 
 #define ListCellIdentifier @"listCell"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,ListCellImgDelegate,PhotoBrowserVCDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray *listDataArr;
 
+@property (nonatomic, strong) NSMutableArray *currentImgsArr;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.currentImgsArr = [[NSMutableArray alloc] init];
     [self loadSubViews];
 }
 
@@ -69,6 +72,7 @@
 {
     
     ListCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCellIdentifier];
+    cell.imgDelegate = self;
     if (cell == nil) {
         cell = [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifier];
     }
@@ -86,5 +90,22 @@
 //    ListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     NSLog(@"%zi",indexPath.row);
+}
+
+#pragma mark - 点击媒体图片调出图片浏览器
+-(void)ClickCollectionViewItemActionWithItemIndex:(NSInteger)index andPictres:(NSMutableArray *)imgsArray
+{
+    _currentImgsArr = imgsArray;
+    PhotoBrowserVC *browerVC = [[PhotoBrowserVC alloc] init];
+    browerVC.imageCount = imgsArray.count;
+    browerVC.currentImageIndex = index;
+    browerVC.delegate = self;
+    [browerVC show];
+}
+
+#pragma mark - 设置图片浏览器中的图片
+-(NSURL *)getImageUrlWithImgIndex:(NSInteger)index
+{
+    return _currentImgsArr[index];
 }
 @end

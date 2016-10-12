@@ -153,11 +153,20 @@
     
     //设置媒体图片
     //(如果有图片的话设置，否则隐藏该控件，此处假设有数据)
-    CGFloat mediaHeight = [ListCell contentMediaHeightWithListCellModel:listCellModel];
-    CGFloat mediaWidth = ContentWidth;
-    [self.mediaView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, mediaWidth, mediaHeight)];
-    curBottomY = self.mediaView.bottom;
-    [_mediaView reloadData];
+    if (listCellModel.pictures.count >0) {
+        CGFloat mediaHeight = [ListCell contentMediaHeightWithListCellModel:listCellModel];
+        CGFloat mediaWidth = ContentWidth;
+        [self.mediaView setFrame:CGRectMake(ListCellLeftMargin, curBottomY, mediaWidth, mediaHeight)];
+        curBottomY = self.mediaView.bottom;
+        [_mediaView reloadData];
+        self.mediaView.hidden = NO;
+    }else
+    {
+        if (self.mediaView) {
+            self.mediaView.hidden = YES;
+        }
+    }
+    
     
     //设置点赞和评论按钮
     _likeBtn.top = curBottomY;
@@ -333,6 +342,10 @@
 {
     if (collectionView == _mediaView) {
         NSLog(@" mediaView  %zi",indexPath.item);
+        //点击某一个图片
+        if ([self.imgDelegate respondsToSelector:@selector(ClickCollectionViewItemActionWithItemIndex:andPictres:)]) {
+            [self.imgDelegate ClickCollectionViewItemActionWithItemIndex:indexPath.item andPictres:self.listCellModel.pictures];
+        }
     }
     else
     {

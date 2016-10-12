@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "ListCellModel.h"
 
+@protocol ListCellImgDelegate <NSObject>
+
+-(void)ClickCollectionViewItemActionWithItemIndex:(NSInteger)index andPictres:(NSMutableArray *)imgsArray;
+
+@end
+
 @interface ListCell : UITableViewCell
 
 -(void)setListCellModel:(ListCellModel *)listCellModel;
 +(CGFloat)cellHeightWithObj:(id)obj;
+@property (nonatomic, weak) id<ListCellImgDelegate> imgDelegate;
 
 @end
