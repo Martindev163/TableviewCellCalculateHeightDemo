@@ -64,7 +64,9 @@
 -(void)setupImageOfImageViewForIndex:(NSInteger)index
 {
     PhotoBrowserView *view = _scrollview.subviews[index];
+    if (view.beginLoadingImg) return;
     [view setImageWithURL:[self getImageUrlForIndex:index] placeholderImage:[UIImage new]];
+    view.beginLoadingImg = YES;
 }
 
 #pragma mark - 获取图片链接
@@ -120,7 +122,13 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSInteger autualIndex = scrollView.contentOffset.x/scrollView.bounds.size.width;
+    NSInteger autualIndex = scrollView.contentOffset.x/_scrollview.bounds.size.width;
     self.currentImageIndex = autualIndex;
+    
+    for (PhotoBrowserView *view in scrollView.subviews) {
+        if (view.imageView.tag != autualIndex) {
+            view.scrollView.zoomScale = 1.0;
+        }
+    }
 }
 @end

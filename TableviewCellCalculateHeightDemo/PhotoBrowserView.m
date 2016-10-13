@@ -33,36 +33,43 @@
     [self adjustFrames];
 }
 
-#pragma mark - 适配空间Frame
+#pragma mark - 适配控件Frame
 -(void)adjustFrames
 {
     CGRect frame = self.scrollView.frame;
     if (self.imageView.image) {
         CGSize imageSize = self.imageView.image.size;
         CGRect imageFrame = CGRectMake(0, 0, imageSize.width, imageSize.height);
-//        if (kIsFullWidthForLandScaoe) {
+        if (kIsFullWidthForLandScaoe) {
             CGFloat ratio = frame.size.width/imageFrame.size.width;
             imageFrame.size.height = imageFrame.size.height*ratio;
             imageFrame.size.width = frame.size.width;
-//        }
-//        else
-//        {
-//            if (frame.size.width <= frame.size.height) {
-//                CGFloat ratio = frame.size.width/imageFrame.size.width;
-//                imageFrame.size.height = imageFrame.size.height*ratio;
-//                imageFrame.size.width = frame.size.width;
-//            }else
-//            {
-//                CGFloat ratio = frame.size.height/imageFrame.size.height;
-//                imageFrame.size.width = imageFrame.size.width*ratio;
-//                imageFrame.size.height = frame.size.height;
-//            }
-//        }
+        }
+        else
+        {
+            if (frame.size.width <= frame.size.height) {
+                CGFloat ratio = frame.size.width/imageFrame.size.width;
+                imageFrame.size.height = imageFrame.size.height*ratio;
+                imageFrame.size.width = frame.size.width;
+            }else
+            {
+                CGFloat ratio = frame.size.height/imageFrame.size.height;
+                imageFrame.size.width = imageFrame.size.width*ratio;
+                imageFrame.size.height = frame.size.height;
+            }
+        }
     
         self.imageView.frame = imageFrame;
         self.scrollView.contentSize = self.imageView.frame.size;
         self.imageView.center = [self centerOfScrollViewContent:self.scrollView];
     }
+    else
+    {
+        frame.origin = CGPointZero;
+        self.imageView.frame = frame;
+        self.scrollView.contentSize = self.imageView.frame.size;
+    }
+    self.scrollView.contentOffset = CGPointZero;
 }
 
 
@@ -102,6 +109,7 @@
     _imgUrl = url;
     _placeHolderImage = placeholder;
     [_imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self setNeedsLayout];//加在图片后重新设置图片的宽高
         //处理图片加载失败的情况
         if (error) {
             NSLog(@"失败");
