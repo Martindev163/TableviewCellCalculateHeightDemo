@@ -20,6 +20,13 @@
 
 @implementation PhotoBrowserVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!_hasShowPhotoBrowser) {
+        [self showPhotoBrowser];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,16 +34,6 @@
     [self loadScrollView];
     [self setUpFrames];
     self.view.backgroundColor = [UIColor blackColor];
-    
-    UIButton *dismisBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    dismisBtn.backgroundColor = [UIColor redColor];
-    [dismisBtn addTarget:self action:@selector(dismissVC) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:dismisBtn];
-    
-}
--(void)dismissVC
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 添加scrollview
@@ -48,13 +45,21 @@
     _scrollview.showsVerticalScrollIndicator = NO;
     _scrollview.showsHorizontalScrollIndicator = NO;
     _scrollview.pagingEnabled = YES;
-    _scrollview.hidden = NO;
+    _scrollview.hidden = YES;
     [self.view addSubview:_scrollview];
     
     for (int i = 0; i < self.imageCount; i++) {
         PhotoBrowserView *view = [[PhotoBrowserView alloc] init];
         
         view.imageView.tag = i;
+        
+        //处理单击事件
+        __weak __typeof(self)weakSelf = self;
+        view.singleTapBlock = ^(UITapGestureRecognizer *recognizer)
+        {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf hidePhotoBrowser:recognizer];
+        };
         [_scrollview addSubview:view];
     }
     [self setupImageOfImageViewForIndex:self.currentImageIndex];
@@ -99,12 +104,6 @@
     _scrollview.contentOffset = CGPointMake(self.currentImageIndex*_scrollview.frame.size.width, 0);
 }
 
-#pragma mark - 弹出图片浏览器
--(void)show
-{
-    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self animated:YES completion:nil];
-}
-
 #pragma mark - UIScrollVoew Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -130,5 +129,91 @@
             view.scrollView.zoomScale = 1.0;
         }
     }
+}
+
+#pragma mark - 弹出图片浏览器
+-(void)show
+{
+    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:self animated:NO completion:nil];
+}
+
+#pragma mark - 单击隐藏图片浏览器
+-(void)hidePhotoBrowser:(UITapGestureRecognizer *)recognizer
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - 显示图片浏览器
+-(void)showPhotoBrowser
+{
+    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
+    UIView *parentView = [self getParsentView:sourceView];
+    CGRect rect = [sourceView.superview convertRect:sourceView.frame toView:parentView];
+    
+    //如果是tableview，要减去偏移量
+    if ([parentView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)parentView;
+        rect.origin.y = rect.origin.y - tableView.contentOffset.y;
+    }
+    
+    UIImageView *tempImageView = [[UIImageView alloc] init];
+    tempImageView.frame = rect;
+    tempImageView.image = [UIImage imageNamed:@"qqIcon"];
+    [self.view addSubview:tempImageView];
+    tempImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    CGFloat placeImageSizeW = tempImageView.image.size.width;
+    CGFloat placeImageSizeH = tempImageView.image.size.height;
+    CGRect targetTemp;
+    
+    if (!kIsFullWidthForLandScape) {
+        if (kDeviceWidth < kDeviceHeight) {
+            CGFloat palceHolderH = (placeImageSizeH * kDeviceWidth)/placeImageSizeW;
+            if (palceHolderH < kDeviceHeight) {
+                targetTemp = CGRectMake(0, (kDeviceHeight - palceHolderH)*0.5, kDeviceWidth, palceHolderH);
+            }else
+            {
+                targetTemp = CGRectMake(0, 0, kDeviceWidth, placeImageSizeH);
+            }
+        }
+        else
+        {
+            CGFloat placeHolderH = (placeImageSizeH*kDeviceHeight)/placeImageSizeW;
+            if (placeHolderH < kDeviceWidth) {
+                targetTemp = CGRectMake((kDeviceWidth - placeHolderH)*0.5, 0, placeHolderH, kDeviceHeight);
+            }else
+            {
+                targetTemp = CGRectMake(0, 0, placeHolderH, kDeviceHeight);
+            }
+        }
+    }
+    else
+    {
+        CGFloat placeHolderH = (placeImageSizeH *kDeviceWidth)/placeImageSizeW;
+        if (placeHolderH <= kDeviceHeight) {
+            targetTemp = CGRectMake(0, (kDeviceWidth - placeHolderH)*0.5, kDeviceWidth, placeHolderH);
+        }else
+        {
+            targetTemp = CGRectMake(0, 0, kDeviceWidth, placeHolderH);
+        }
+    }
+    _scrollview.hidden = YES;
+    
+    [UIView animateWithDuration:kPhotoBrowserShowDuration animations:^{
+        tempImageView.frame = targetTemp;
+    }completion:^(BOOL finished) {
+        _hasShowPhotoBrowser = YES;
+        [tempImageView removeFromSuperview];
+        _scrollview.hidden = NO;
+    }];
+}
+
+#pragma mark - 获取控制器的view
+-(UIView *)getParsentView:(UIView *)view
+{
+    if ([[view nextResponder] isKindOfClass:[UIViewController class]] || view == nil) {
+        return view;
+    }
+    return [self getParsentView:view.superview];
 }
 @end

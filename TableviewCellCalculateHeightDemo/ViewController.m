@@ -70,7 +70,6 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     ListCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCellIdentifier];
     cell.imgDelegate = self;
     if (cell == nil) {

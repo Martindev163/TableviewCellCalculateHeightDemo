@@ -396,6 +396,7 @@
 					231D5E871D65509E00BC7286 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 94KPU2F73G;
+						ProvisioningStyle = Manual;
 					};
 					231D5EA01D65509F00BC7286 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -662,6 +663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 94KPU2F73G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TableviewCellCalculateHeightDemo",
@@ -670,9 +672,10 @@
 				INFOPLIST_FILE = TableviewCellCalculateHeightDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junanxin.TableviewCellCalculateHeightDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anxin.anxindai4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -684,6 +687,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 94KPU2F73G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TableviewCellCalculateHeightDemo",
@@ -692,9 +696,10 @@
 				INFOPLIST_FILE = TableviewCellCalculateHeightDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junanxin.TableviewCellCalculateHeightDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anxin.anxindai4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

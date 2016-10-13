@@ -13,6 +13,9 @@
 
 @property (nonatomic, strong) NSURL *imgUrl;
 @property (nonatomic, strong) UIImage *placeHolderImage;
+//添加单击双击手势
+@property (nonatomic, strong) UITapGestureRecognizer *singleTap;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
 @end
 
@@ -22,6 +25,9 @@
 {
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.scrollView];
+        //添加单击双击手势
+        [self addGestureRecognizer:self.singleTap];
+        [self addGestureRecognizer:self.doubleTap];
     }
     return self;
 }
@@ -40,7 +46,7 @@
     if (self.imageView.image) {
         CGSize imageSize = self.imageView.image.size;
         CGRect imageFrame = CGRectMake(0, 0, imageSize.width, imageSize.height);
-        if (kIsFullWidthForLandScaoe) {
+        if (kIsFullWidthForLandScape) {
             CGFloat ratio = frame.size.width/imageFrame.size.width;
             imageFrame.size.height = imageFrame.size.height*ratio;
             imageFrame.size.width = frame.size.width;
@@ -58,10 +64,18 @@
                 imageFrame.size.height = frame.size.height;
             }
         }
-    
+        
         self.imageView.frame = imageFrame;
         self.scrollView.contentSize = self.imageView.frame.size;
         self.imageView.center = [self centerOfScrollViewContent:self.scrollView];
+        
+        CGFloat maxScale = frame.size.height/imageFrame.size.height;
+        maxScale = frame.size.width/imageFrame.size.width>maxScale?frame.size.width/imageFrame.size.width:maxScale;
+        maxScale = maxScale > kMaxZoomScale?maxScale:kMaxZoomScale;
+        
+        self.scrollView.minimumZoomScale = kMinZoomScale;
+        self.scrollView.maximumZoomScale = maxScale;
+        self.scrollView.zoomScale = 1.0f;
     }
     else
     {
@@ -82,6 +96,7 @@
     return actualCenter;
 }
 
+#pragma mark - 初始化控件
 - (UIScrollView *)scrollView
 {
     if (!_scrollView) {
@@ -104,6 +119,7 @@
     return _imageView;
 }
 
+#pragma mark - 为imageView设置图片
 -(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
 {
     _imgUrl = url;
@@ -115,5 +131,63 @@
             NSLog(@"失败");
         }
     }];
+}
+
+#pragma mark - 初始化单击/双击事件
+-(UITapGestureRecognizer *)singleTap
+{
+    if (!_singleTap) {
+        _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        _singleTap.numberOfTapsRequired = 1;
+        _singleTap.numberOfTouchesRequired = 1;
+        //屏蔽单击事件
+        [_singleTap requireGestureRecognizerToFail:self.doubleTap];
+    }
+    return _singleTap;
+}
+
+-(UITapGestureRecognizer *)doubleTap
+{
+    if (!_doubleTap) {
+        _doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+        _doubleTap.numberOfTapsRequired = 2;
+        _doubleTap.numberOfTouchesRequired = 1;//手指数
+    }
+    return _doubleTap;
+}
+
+//单击
+-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    if (self.singleTapBlock) {
+        self.singleTapBlock(recognizer);
+    }
+}
+//双击
+-(void)handleDoubleTap:(UITapGestureRecognizer *)recognizer
+{
+    NSLog(@"放大／缩小");
+    //图片加载完才能响应双击事件（等等再加）
+    
+    CGPoint touchPoint = [recognizer locationInView:self];
+    if (self.scrollView.zoomScale <= 1.0) {
+        CGFloat scaleX = touchPoint.x + self.scrollView.contentOffset.x;
+        CGFloat scaleY = touchPoint.y + self.scrollView.contentOffset.y;
+        [self.scrollView zoomToRect:CGRectMake(scaleX, scaleY, 10, 10) animated:YES];
+    }
+    else
+    {
+        [self.scrollView setZoomScale:1.0 animated:YES];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
+}
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    self.imageView.center = [self centerOfScrollViewContent:scrollView];
 }
 @end

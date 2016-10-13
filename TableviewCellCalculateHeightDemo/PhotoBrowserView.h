@@ -17,4 +17,6 @@
 
 -(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
 
+//单击回调
+@property (nonatomic, strong) void (^singleTapBlock)(UITapGestureRecognizer *recognizer);
 @end
