@@ -22,6 +22,8 @@
 @property (strong, nonatomic) NSMutableArray *listDataArr;
 
 @property (nonatomic, strong) NSMutableArray *currentImgsArr;
+
+@property (nonatomic, strong) UIImage *tapImg;
 @end
 
 @implementation ViewController
@@ -92,13 +94,15 @@
 }
 
 #pragma mark - 点击媒体图片调出图片浏览器
--(void)ClickCollectionViewItemActionWithItemIndex:(NSInteger)index andPictres:(NSMutableArray *)imgsArray
+-(void)ClickCollectionViewItemActionWithItemIndex:(NSInteger)index andPictres:(NSMutableArray *)imgsArray andTapImg:(UIImage *)img andSourceSuperView:(UIView *)sourceView
 {
     _currentImgsArr = imgsArray;
+    _tapImg = img;
     PhotoBrowserVC *browerVC = [[PhotoBrowserVC alloc] init];
     browerVC.imageCount = imgsArray.count;
     browerVC.currentImageIndex = index;
     browerVC.delegate = self;
+    browerVC.sourceImagesContainerView = sourceView;
     [browerVC show];
 }
 
@@ -106,5 +110,9 @@
 -(NSURL *)getImageUrlWithImgIndex:(NSInteger)index
 {
     return _currentImgsArr[index];
+}
+-(UIImage *)getTapImageWithIndex:(NSInteger)index
+{
+    return _tapImg;
 }
 @end

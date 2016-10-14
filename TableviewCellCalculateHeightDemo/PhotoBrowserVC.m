@@ -140,7 +140,7 @@
 #pragma mark - 单击隐藏图片浏览器
 -(void)hidePhotoBrowser:(UITapGestureRecognizer *)recognizer
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self TapPictureHidBrowser:recognizer];
 }
 
 #pragma mark - 显示图片浏览器
@@ -155,10 +155,10 @@
         UITableView *tableView = (UITableView *)parentView;
         rect.origin.y = rect.origin.y - tableView.contentOffset.y;
     }
-    
+
     UIImageView *tempImageView = [[UIImageView alloc] init];
     tempImageView.frame = rect;
-    tempImageView.image = [UIImage imageNamed:@"qqIcon"];
+    tempImageView.image = [self getPlacehoderImgWithIdex:self.currentImageIndex];
     [self.view addSubview:tempImageView];
     tempImageView.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -191,7 +191,7 @@
     {
         CGFloat placeHolderH = (placeImageSizeH *kDeviceWidth)/placeImageSizeW;
         if (placeHolderH <= kDeviceHeight) {
-            targetTemp = CGRectMake(0, (kDeviceWidth - placeHolderH)*0.5, kDeviceWidth, placeHolderH);
+            targetTemp = CGRectMake(0, (kDeviceHeight - placeHolderH)*0.5, kDeviceWidth, placeHolderH);
         }else
         {
             targetTemp = CGRectMake(0, 0, kDeviceWidth, placeHolderH);
@@ -208,6 +208,62 @@
     }];
 }
 
+#pragma mark - 点击隐藏图片浏览器
+-(void)TapPictureHidBrowser:(UITapGestureRecognizer *)recognizer
+{
+    PhotoBrowserView *view = (PhotoBrowserView *)recognizer.view;
+    UIImageView *currentImageView = view.imageView;
+    
+    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
+    UIView *parentView = [self getParsentView:sourceView];
+    CGRect targetTemp = [sourceView.superview convertRect:sourceView.frame toView:parentView];
+    
+    //减去偏移量
+    if ([parentView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)parentView;
+        targetTemp.origin.y = targetTemp.origin.y - tableView.contentOffset.y;
+    }
+    
+    CGFloat AppWidth;
+    CGFloat AppHeight;
+    if (kDeviceWidth <kDeviceHeight) {
+        AppWidth = kDeviceWidth;
+        AppHeight = kDeviceHeight;
+    }else
+    {
+        AppWidth = kDeviceHeight;
+        AppHeight = kDeviceWidth;
+    }
+    
+    UIImageView *tempImageView = [[UIImageView alloc] init];
+    tempImageView.image = currentImageView.image;
+    if (tempImageView.image) {
+        CGFloat tempImageSizeH = tempImageView.image.size.height;
+        CGFloat tempImageSizeW = tempImageView.image.size.width;
+        CGFloat tempImageViewH = tempImageSizeH * (AppWidth/tempImageSizeW);
+        if (tempImageViewH < AppHeight) {
+            tempImageView.frame = CGRectMake(0, (AppHeight - tempImageViewH)*0.5, AppWidth, tempImageViewH);
+        }else
+        {
+            tempImageView.frame = CGRectMake(0, 0, AppWidth, tempImageViewH);
+        }
+    }
+    else
+    {
+        tempImageView.backgroundColor = [UIColor whiteColor];
+        tempImageView.frame = CGRectMake(0, (AppHeight - AppWidth)*0.5, AppWidth, AppHeight);
+    }
+    
+    [self.view.window addSubview:tempImageView];
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [UIView animateWithDuration:kPhotoBrowserShowDuration animations:^{
+        tempImageView.frame = targetTemp;
+        tempImageView.alpha = 0;
+    }completion:^(BOOL finished) {
+        [tempImageView removeFromSuperview];
+    }];
+}
 #pragma mark - 获取控制器的view
 -(UIView *)getParsentView:(UIView *)view
 {
@@ -215,5 +271,37 @@
         return view;
     }
     return [self getParsentView:view.superview];
+}
+
+#pragma mark - 获取点击item的图片
+-(UIImage *)getPlacehoderImgWithIdex:(NSInteger)index;
+{
+    if ([self.delegate respondsToSelector:@selector(getTapImageWithIndex:)]) {
+        return [self.delegate getTapImageWithIndex:self.currentImageIndex];
+    }
+    return nil;
+}
+
+#pragma mark 重置控件frame（处理屏幕旋转）
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self setUpFrames];
+}
+
+#pragma mark 横竖屏设置
+- (BOOL)shouldAutorotate
+{
+    return ShouldSupportLandscape;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if (ShouldSupportLandscape) {
+        return UIInterfaceOrientationMaskAll;
+    } else{
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    
 }
 @end

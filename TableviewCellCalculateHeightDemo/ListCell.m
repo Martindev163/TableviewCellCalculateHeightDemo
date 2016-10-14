@@ -342,9 +342,10 @@
 {
     if (collectionView == _mediaView) {
         NSLog(@" mediaView  %zi",indexPath.item);
+        ListMediaItemCell *cell = (ListMediaItemCell *)[collectionView cellForItemAtIndexPath:indexPath];
         //点击某一个图片
-        if ([self.imgDelegate respondsToSelector:@selector(ClickCollectionViewItemActionWithItemIndex:andPictres:)]) {
-            [self.imgDelegate ClickCollectionViewItemActionWithItemIndex:indexPath.item andPictres:self.listCellModel.pictures];
+        if ([self.imgDelegate respondsToSelector:@selector(ClickCollectionViewItemActionWithItemIndex:andPictres:andTapImg:andSourceSuperView:)]) {
+            [self.imgDelegate ClickCollectionViewItemActionWithItemIndex:indexPath.item andPictres:self.listCellModel.pictures andTapImg:cell.mediaImg.image andSourceSuperView:collectionView];
         }
     }
     else

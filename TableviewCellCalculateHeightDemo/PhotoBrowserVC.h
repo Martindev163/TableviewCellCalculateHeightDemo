@@ -13,6 +13,8 @@
 
 -(NSURL *)getImageUrlWithImgIndex:(NSInteger)index;
 
+-(UIImage *)getTapImageWithIndex:(NSInteger)index;
+
 @end
 
 @interface PhotoBrowserVC : UIViewController
