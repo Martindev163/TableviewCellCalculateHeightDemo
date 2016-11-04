@@ -252,13 +252,13 @@
 		231D5EC11D6551E500BC7286 /* otherFile */ = {
 			isa = PBXGroup;
 			children = (
-				231D5E971D65509E00BC7286 /* Assets.xcassets */,
-				231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */,
-				231D5E9C1D65509E00BC7286 /* Info.plist */,
 				231D5E8E1D65509E00BC7286 /* AppDelegate.h */,
 				231D5E8F1D65509E00BC7286 /* AppDelegate.m */,
-				23297F301D7EAC15001CF938 /* ListDataPlist.plist */,
 				23297F3F1D7ECA2D001CF938 /* PrefixHeader.pch */,
+				23297F301D7EAC15001CF938 /* ListDataPlist.plist */,
+				231D5E9C1D65509E00BC7286 /* Info.plist */,
+				231D5E971D65509E00BC7286 /* Assets.xcassets */,
+				231D5E991D65509E00BC7286 /* LaunchScreen.storyboard */,
 			);
 			name = otherFile;
 			sourceTree = "<group>";

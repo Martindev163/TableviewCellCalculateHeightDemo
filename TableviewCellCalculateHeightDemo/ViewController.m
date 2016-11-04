@@ -15,7 +15,7 @@
 
 #define ListCellIdentifier @"listCell"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,ListCellImgDelegate,PhotoBrowserVCDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,ListCellImgDelegate,PhotoBrowserVCDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *currentImgsArr;
 
 @property (nonatomic, strong) UIImage *tapImg;
+
+@property (nonatomic, strong) NSMutableArray *refreshImgsArr;
 @end
 
 @implementation ViewController
@@ -60,7 +62,37 @@
     [_tableView registerClass:[ListCell class] forCellReuseIdentifier:ListCellIdentifier];
 //    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     [self.view addSubview:_tableView];
+    
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshAction)];
+    [header setImages:self.refreshImgsArr forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
 }
+
+#pragma mark - 初始化动画图片数组
+-(NSMutableArray *)refreshImgsArr
+{
+    if (!_refreshImgsArr) {
+        _refreshImgsArr = [[NSMutableArray alloc] init];
+        NSArray *ImgsArr = @[@"deliveryStaff",@"deliveryStaff1",@"deliveryStaff2",@"deliveryStaff3"];
+        
+        for (NSString *imgName in ImgsArr) {
+            UIImage *img = [UIImage imageNamed:imgName];
+            [_refreshImgsArr addObject:img];
+        }
+    }
+    return _refreshImgsArr;
+}
+
+#pragma mark - 下拉刷新事件
+-(void)refreshAction
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_tableView.mj_header endRefreshing];
+    });
+    
+    NSLog(@"下拉刷新");
+}
+
 #pragma mark - UITableView 代理、数据源方法
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -114,5 +146,15 @@
 -(UIImage *)getTapImageWithIndex:(NSInteger)index
 {
     return _tapImg;
+}
+
+#pragma mark - 通过tableview偏移量来设置下拉上推过程中的动画
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == _tableView) {
+        if (_tableView.contentOffset.y<0) {
+            
+        }
+    }
 }
 @end

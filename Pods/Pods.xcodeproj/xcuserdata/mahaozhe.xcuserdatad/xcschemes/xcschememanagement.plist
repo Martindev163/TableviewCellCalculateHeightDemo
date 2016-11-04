@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TableviewCellCalculateHeightDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0CD6B1384A9B3510B6F08E067C3FE2FF</key>
+		<key>70BC44266C6FFE30D2C57129458E070B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5CD0846FEC035C0BEF3C753AE81B71F5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7EDC54B78CB5CCC95A69E54E37ED06F9</key>
+		<key>89D1AC116FF34D0F76173C0F6A5F3FD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C896C0CC5DCCF66293E16DD364B6965D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D92E66D209D5F836EA02C695A335C159</key>
 		<dict>
 			<key>primary</key>
 			<true/>
