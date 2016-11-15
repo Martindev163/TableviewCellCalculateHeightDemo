@@ -21,4 +21,8 @@
 +(CGFloat)cellHeightWithObj:(id)obj;
 @property (nonatomic, weak) id<ListCellImgDelegate> imgDelegate;
 
+@property (nonatomic, assign) NSInteger cellIndex;
+
+@property (nonatomic, assign) BOOL isLiked;
+
 @end

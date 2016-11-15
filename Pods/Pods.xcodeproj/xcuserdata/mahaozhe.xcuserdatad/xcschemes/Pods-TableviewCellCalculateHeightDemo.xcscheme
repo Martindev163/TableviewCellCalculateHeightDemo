@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '89D1AC116FF34D0F76173C0F6A5F3FD7'
+               BlueprintIdentifier = '17F0B8B3683A85EA990BB02DC0542146'
                BlueprintName = 'Pods-TableviewCellCalculateHeightDemo'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-TableviewCellCalculateHeightDemo.a'>

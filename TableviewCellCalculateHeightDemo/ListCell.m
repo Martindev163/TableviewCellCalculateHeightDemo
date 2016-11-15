@@ -205,6 +205,15 @@
 //    [self.likeBtn setTitle:_listCellModel.likeNumStr forState:UIControlStateNormal];
 //    [self.commentBtn setTitle:_listCellModel.commentNumStr forState:UIControlStateNormal];
     
+    //本人是否点过赞
+    if (listCellModel.isLiked == YES)
+    {
+        self.likeBtn.selected = YES;
+    }
+    else
+    {
+        self.likeBtn.selected = NO;
+    }
 }
 
 #pragma mark - 计算cell的高度
@@ -389,16 +398,52 @@
 #pragma mark - 点击点赞按钮
 -(void)LikeBtnClikAction
 {
+    FMDatabase *db = [FMDatabase databaseWithPath:LikeDataBasePath];
     if (_likeBtn.selected==NO) {
         _likeBtn.selected = YES;
         NSLog(@"点赞");
+        if ([db open]) {
+            NSString *insertSql = @"INSERT INTO User (userIndex) values (?)";
+            BOOL succeed = [db executeUpdate:insertSql,[NSNumber numberWithInteger:_cellIndex]];
+            if (succeed) {
+                NSLog(@"插入成功");
+            }
+            else
+            {
+                NSLog(@"插入失败");
+            }
+        }
     }
     else
     {
         _likeBtn.selected = NO;
         NSLog(@"取消点赞");
+        if ([db open]) {
+            FMResultSet *rs = [db executeQuery:@"SELECT COUNT(userIndex) AS countNum FROM User WHERE userIndex = ?",[NSString stringWithFormat:@"%zi",_cellIndex]];
+            while ([rs next]) {
+                NSInteger count = [rs intForColumn:@"countNum"];
+                NSLog(@"%zi",count);
+                if (count > 0) {
+                    NSLog(@"已经存在");
+                    
+                    NSString *deleteSql = @"DELETE FROM User WHERE userIndex = ?";
+                    BOOL succeed = [db executeUpdate:deleteSql,[NSString stringWithFormat:@"%zi",_cellIndex]];
+                    if (succeed) {
+                        NSLog(@"删除成功");
+                    }
+                    else
+                    {
+                        NSLog(@"删除失败");
+                    }
+                }
+                else
+                {
+                    NSLog(@"没有存在");
+                }
+            }
+        }
     }
-    
+    [db close];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

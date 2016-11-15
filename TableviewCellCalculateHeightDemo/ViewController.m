@@ -26,6 +26,8 @@
 @property (nonatomic, strong) UIImage *tapImg;
 
 @property (nonatomic, strong) NSMutableArray *refreshImgsArr;
+
+@property (nonatomic, strong) FMDatabase *db;
 @end
 
 @implementation ViewController
@@ -34,6 +36,8 @@
     [super viewDidLoad];
     self.currentImgsArr = [[NSMutableArray alloc] init];
     [self loadSubViews];
+    
+    [self createDataBase];
 }
 
 #pragma mark - 获取数据
@@ -109,8 +113,31 @@
     if (cell == nil) {
         cell = [[ListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListCellIdentifier];
     }
-    [cell setListCellModel:_listDataArr[indexPath.row]];
+    ListCellModel *model = _listDataArr[indexPath.row];
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:LikeDataBasePath];
+    if ([db open]) {
+        FMResultSet *rs = [db executeQuery:@"SELECT COUNT(userIndex) AS countNum FROM User WHERE userIndex = ?",[NSString stringWithFormat:@"%zi",indexPath.row]];
+        while ([rs next]) {
+            NSInteger count = [rs intForColumn:@"countNum"];
+            NSLog(@"%zi",count);
+            if (count > 0) {
+                NSLog(@"点过攒");
+                model.isLiked = YES;
+            }
+            else
+            {
+                NSLog(@"没点过赞");
+                model.isLiked = NO;
+            }
+        }
+    }
+    if ([db close]) {
+        [cell setListCellModel:model];
+    }
+    cell.cellIndex = indexPath.row;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,4 +184,50 @@
         }
     }
 }
+
+#pragma mark - 创建数据库
+-(void)createDataBase
+{
+    _db = [FMDatabase databaseWithPath:LikeDataBasePath];
+    NSLog(@"%@",LikeDataBasePath);
+    //创建表
+    if ([_db open]) {
+        NSLog(@"创建数据库成功");
+        FMResultSet *rs = [self.db executeQuery:@"select count(*) as 'count' from sqlite_master where type ='table' and name = 'User'"];
+        while ([rs next]) {
+            
+            NSInteger count = [rs intForColumn:@"count"];
+            if (count == 0) {
+                NSLog(@"未创建点赞表");
+                [self createUserLikeTable];
+                [_db close];
+            }
+            else
+            {
+                NSLog(@"已创建点赞表");
+                
+                [_db close];
+                return;
+            }
+        }
+        
+    }else
+    {
+        NSLog(@"创建数据库失败");
+    }
+}
+#pragma mark - 创建点赞表
+-(void)createUserLikeTable
+{
+    NSString *creatTBSql = @"CREATE TABLE 'User' ('id' INTEGER PRIMARY KEY AUTOINCREMENT,'userIndex' INTEGER)";
+    BOOL succeed = [_db executeUpdate:creatTBSql];
+    if (succeed) {
+        NSLog(@"创建表成功");
+    }
+    else
+    {
+        NSLog(@"创建表失败");
+    }
+}
+
 @end

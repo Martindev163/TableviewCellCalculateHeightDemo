@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSMutableArray *pictures;//媒体图片
 @property (strong, nonatomic) NSArray *comment_list,*like_users;//评论，喜欢的人
 @property (strong, nonatomic) UserModel *user;
-
+@property (nonatomic, assign) BOOL isLiked;//是否点过赞
 
 -(instancetype)makeListCellModelWithDic:(NSDictionary *)dic;
 @end
